@@ -12,7 +12,7 @@ function Login() {
         <>
             <Button class='btn' onClick={() => navigate("/")}>Back Home</Button>
             
-            <Button type="submit" variant="contained" color="secondary" onClick={() => navigate("/chat")}>
+            <Button type="submit" variant="contained" color="secondary" onClick={() => navigate("/personality")}>
             Send
             </Button>
         </>

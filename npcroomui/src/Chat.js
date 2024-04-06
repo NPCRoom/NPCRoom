@@ -26,7 +26,7 @@ const Chat = (props) => {
   
   return (
     <>
-      <Button class='btn' onClick={() => navigate("/")}>Go Back</Button>
+      <Button class='btn' variant="contained" onClick={() => navigate("/")}>Go Back</Button>
       <Box
       sx={{ 
         mt: 2,
