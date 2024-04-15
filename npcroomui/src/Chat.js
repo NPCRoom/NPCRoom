@@ -10,28 +10,30 @@ import InputAdornment from "@mui/material/InputAdornment";
 const Chat = (props) => {
   const navigate = useNavigate();
 
-  const [textInput, setTextInput] = useState("");
-  const [response, setResponse] = useState("");
-
+  const [textInput, setTextInput] = useState('');
+  const [response, setResponse] = useState('');
+  const personality = localStorage.getItem("personality");
+  console.log("Personality: %s", personality);
   const responseMaker = (e) => {
     e.preventDefault();
     console.log("On the way");
-    Promise.resolve(
-      axios.post("https://npcroom-processing.onrender.com", textInput)
-    )
-      .then(() => {
-        console.log("message has been sent");
-        Promise.resolve(
-          axios.get("https://npcroom-processing.onrender.com")
-        ).then((res) => {
-          setResponse(
-            response + "You: " + textInput + "\n" + "NPC: " + res.data
-          );
-        });
+    Promise.resolve(axios.post("http://localhost:8080/"+personality, textInput)).then(() => {
+      console.log("message has been sent")
+      Promise.resolve(axios.get("http://localhost:8080/"+personality)).then((res) => {
+        setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
+      })
+    }).catch((err) => {
+        console.log("failed", err.message);
+    });
+    /*
+    Promise.resolve(axios.post("https://npcroom-processing.onrender.com", textInput)).then(() => {
+      console.log("message has been sent")
+      Promise.resolve(axios.get("https://npcroom-processing.onrender.com")).then((res) => {
+        setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
       })
       .catch((err) => {
         console.log("failed", err.message);
-      });
+      }); */
   };
 
   return (

@@ -6,7 +6,7 @@ import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping
+@RequestMapping("/chat")
 public class NPCRoomController {
 
     private String result;
