@@ -1,23 +1,74 @@
-import React from "react";
-import { useState } from 'react';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import BackButton from "./Components/Logo";
+import "./Login.css";
 
 function Login() {
-    const navigate = useNavigate();
-    return (
-        /* complete login screen here! Reformat and move button to appropriate place. It should be a simple
-        username and password login screen */
-        <>
-            <Button class='btn' onClick={() => navigate("/")}>Back Home</Button>
-            
-            <Button type="submit" variant="contained" color="secondary" onClick={() => navigate("/personality")}>
-            Send
-            </Button>
-        </>
-        
-    )
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault(); // Prevents the button from losing focus
+  };
+
+  return (
+    <>
+      <BackButton onClick={() => navigate("/")}></BackButton>
+      <div id="logInBox">
+        <Typography id="registerText">Login</Typography>
+        <TextField
+          className="registerField"
+          required
+          margin="normal"
+          label="User Name"
+          variant="filled"
+        />
+        <TextField
+          className="registerField"
+          required
+          margin="normal"
+          label="Password"
+          variant="filled"
+          type=""
+          //   InputProps={{
+          //     endAdornment: (
+          //       <InputAdornment position="end">
+          //         <IconButton
+          //           aria-label="toggle password visibility"
+          //           onClick={handleClickShowPassword}
+          //           onMouseDown={handleMouseDownPassword}
+          //         >
+          //           {showPassword ? <VisibilityOff /> : <Visibility />}
+          //         </IconButton>
+          //       </InputAdornment>
+          //     ),
+          //   }}
+        />
+        <Button
+          id="registerButton"
+          type="submit"
+          variant="contained"
+          onClick={() => navigate("/chat")}
+        >
+          Login
+        </Button>
+      </div>
+    </>
+  );
 }
 
 export default Login;

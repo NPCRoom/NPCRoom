@@ -1,44 +1,44 @@
-.btn {
-    background-color: aquamarine;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
-}
 
-.title {
-    color: white;
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 40px;
-}
+.textBox{
+    margin: auto;
+    position: fixed;
+    bottom: 50px;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
 
-.body {
-    position: relative;
-    z-index: 2;
-    top: 0%;
-    left: 0%;
-    color: black;
-    background-color: aquamarine;
-    border-style: round;
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 20px;
 }
-
-.Home-header {
-    color: white;
-    text-align: center;
-    display: block;
-    height: 100vh;
-    width: 100%;
+.chatText .MuiOutlinedInput-root {
+    color: white; /* Text color inside the input */
+    transition: border-color 0.3s ease, opacity 0.2s ease; /* Smooth transitions for border and opacity */
+    opacity: 0.7; /* Starting opacity */
+    width: auto;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    font-size: 17px;
+  
+    & fieldset {
+      border: 3px solid white !important; /* Sets the initial border style */
+    }
 }
+  
+  /* Hover state for the container that increases opacity */
+  .chatText:hover .MuiOutlinedInput-root,
+  .chatText .MuiOutlinedInput-root.Mui-focused {
+    opacity: 1; /* Full opacity on hover/focus */
+    border-color: white !important; /* Maintain white border on focus */
+  }
+  
+  /* Ensure the text color inside the TextField is white */
+  .chatText .MuiInputBase-input {
+    color: white !important;
+  }
+  
+  .chatText .MuiOutlinedInput-root.Mui-focused fieldset {
+    border-color: white !important; /* Ensuring border color is white on focus */
+  }
 
-.form {
-    position: relative;
-    z-index: 1;
-    top: 25%;
-    left: 35%;
+#sendButton{
+    border-radius: 7px;
+    font-size: 16px;
 }

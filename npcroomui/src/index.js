@@ -25,7 +25,7 @@ const theme = createTheme({
     ].join(','),
 
     allVariants: {
-      color: "white"
+    
     },
   },
 })

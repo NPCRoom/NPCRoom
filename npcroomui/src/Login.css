@@ -1,0 +1,53 @@
+#logInBox{
+    margin: auto;
+    margin-top: 30px;
+    width: 30%;
+    border-radius: 15px;
+    background-color: #FAFBF4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 70vh;
+    
+}
+
+#registerText{
+    margin-top: 15%;
+    margin-bottom: 10%;
+    font-size: 30px;
+}
+
+
+.registerField{
+    width: 70%;
+}
+
+
+.registerField .MuiFilledInput-root {
+    background-color: rgba(0, 0, 0, 0); /* Adjust the alpha value (opacity) as needed */
+}
+  
+.registerField .MuiFilledInput-root:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Darker on hover */
+}
+  
+.registerField .MuiFilledInput-root.Mui-focused {
+    background-color: rgba(0, 0, 0, 0.05); /* Maintain the same style on focus */
+}
+   
+
+
+
+#registerButton{
+    border-radius: 20px;
+    margin-bottom: 15%;
+    margin-top: 15%;
+    width: 70%;
+    height: 40px;
+    font-size: 20px;
+}
+
+#registerButton:hover{
+    background-color: #66FCF1;
+}
