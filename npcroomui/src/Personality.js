@@ -38,6 +38,7 @@ const Personality = () => {
                         <option value="Depressed">Depressed</option>
                         <option value="Angry">Angry</option>
                         <option value="Crackhead">Crackhead</option>
+                        <option value="Nerd">Nerd</option>
                     </NativeSelect>
                 </FormControl>
                 <Button variant="contained" onClick={handlePersonality}>Enter</Button>
