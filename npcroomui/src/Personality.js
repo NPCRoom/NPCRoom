@@ -29,6 +29,7 @@ const Personality = () => {
                     </InputLabel>
                     <NativeSelect
                         defaultValue={30}
+                        sx={{ backgroundColor: "#66FCF1" }}
                         inputProps={{
                             name: 'age',
                             id: 'uncontrolled-native',
