@@ -6,13 +6,10 @@ import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/chat")
 public class NPCRoomController {
 
-    private String result;
-
     @PostMapping("/Classic")
-    public void processStatement(@RequestBody String message) {
+    public String processStatement(@RequestBody String message) {
 
         Map<String, String> statements = Statements.populateMap();
         String msg = message.replaceAll("\\+", " ").substring(0, message.length());
@@ -35,18 +32,13 @@ public class NPCRoomController {
             }
         }
 
-        result = res.toString();
+        return res.toString();
     }
-
-    @GetMapping("/Classic")
-    public String index() { return result; }
 }
 
 class Statements {
     private static Map<String, String> statementMap = new HashMap<String, String>();
-    private static String[] filter = { "nigger", "nigga", "faggot", "fag",
-            "chink", "beaner", "cotton picker", "cunt", "dyke", "fuck", "shit", "motherfucker",
-            "cocksucker", "jizz", "pussy", "dick", "tits", "cum" }; // offensive/inappropriate comments will be censored.
+    private static String[] filter = Filter.getFilter();
 
     public static Map<String, String> populateMap() {
         statementMap.putIfAbsent("hello" , "Hello!");
