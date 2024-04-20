@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import {
   Box,
   Button,
@@ -16,6 +17,8 @@ import "./Login.css";
 function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -24,7 +27,41 @@ function Login() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault(); // Prevents the button from losing focus
   };
-
+  let toggleFail = false;
+  /*
+  const handleLogin = async (username, password) => {
+    try {
+      const response = await axios.post("http://localhost:8080/login", {
+        username: username,
+        password: password
+      });
+      console.log(response.data);
+      if(response.data == "Success") {
+        navigate("/personality");
+      } else {
+        toggleFail = true;
+      }
+    } catch(e) {
+      console.error(e);
+    }
+  } */
+  
+  const handleLogin = (e) => {
+    e.preventDefault();
+    Promise.resolve(axios.post("http://localhost:8080/login", {
+      username: username,
+      password: password
+    })).then((response) => {
+      console.log(response.data);
+      if(response.data === "Failure") {
+        toggleFail = true;
+      } else {
+        navigate("/personality");
+      }
+    }).catch((err) => {
+      console.error("failed", err.message);
+    })
+  }
   return (
     <>
       <BackButton onClick={() => navigate("/")}></BackButton>
@@ -36,6 +73,7 @@ function Login() {
           margin="normal"
           label="User Name"
           variant="filled"
+          onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
           className="registerField"
@@ -57,15 +95,17 @@ function Login() {
           //       </InputAdornment>
           //     ),
           //   }}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button
           id="registerButton"
           type="submit"
           variant="contained"
-          onClick={() => navigate("/chat")}
+          onClick={handleLogin}
         >
           Login
         </Button>
+        {<Typography>Incorrect User or Password</Typography> && toggleFail}
       </div>
     </>
   );

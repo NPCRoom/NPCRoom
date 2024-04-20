@@ -11,7 +11,7 @@ public class NPCRoomController {
 
     private String result;
 
-    @PostMapping
+    @PostMapping("/Classic")
     public void processStatement(@RequestBody String message) {
 
         Map<String, String> statements = Statements.populateMap();
@@ -38,7 +38,7 @@ public class NPCRoomController {
         result = res.toString();
     }
 
-    @GetMapping
+    @GetMapping("/Classic")
     public String index() { return result; }
 }
 

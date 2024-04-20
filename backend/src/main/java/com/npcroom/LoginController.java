@@ -8,16 +8,15 @@ import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins="*")
 @RestController
-@Component
+@RequestMapping
 public class LoginController {
-    @Value("${spring.mongo.db.uri}")
+    @Value("${spring.data.mongodb.uri}")
     private String uri;
+    @PostMapping("/login")
     public String handleLogin(@RequestBody LoginRequest login) {
         try(MongoClient client = MongoClients.create(uri)) {
             String inputUser = login.getUsername();

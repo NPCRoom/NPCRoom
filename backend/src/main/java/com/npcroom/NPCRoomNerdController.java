@@ -2,12 +2,14 @@ package com.npcroom;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
-// add necessary beans up here (also don't worry if CORS doesn't work, we will deal with that later
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/chat")
 public class NPCRoomNerdController {
 
     private String result;
 
-    @PostMapping
+    @PostMapping("/Nerd")
     public void processStatement(@RequestBody String message) {
 
         Map<String, String> statements = Statements.populateMap();
@@ -34,11 +36,11 @@ public class NPCRoomNerdController {
         result = res.toString();
     }
 
-    @GetMapping
+    @GetMapping("/Nerd")
     public String index() { return result; }
 }
 
-class Statements {
+class NerdStatements {
     private static Map<String, String> statementMap = new HashMap<String, String>();
     private static String[] filter = { "nigger", "nigga", "faggot", "fag",
             "chink", "beaner", "cotton picker", "cunt", "dyke", "fuck", "shit", "motherfucker",
