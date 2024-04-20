@@ -1,13 +1,16 @@
 
 .textBox{
     margin: auto;
-    position: fixed;
+    position: relative;
     bottom: 50px;
     width: 80%;
     left: 50%;
-    transform: translateX(-50%);
-
+    transform: translateX(-63%);
 }
+.chatText {
+  color: white;
+}
+
 .chatText .MuiOutlinedInput-root {
     color: white; /* Text color inside the input */
     transition: border-color 0.3s ease, opacity 0.2s ease; /* Smooth transitions for border and opacity */

@@ -13,69 +13,63 @@ const Chat = (props) => {
   const [textInput, setTextInput] = useState('');
   const [response, setResponse] = useState('');
   const personality = localStorage.getItem("personality");
-  console.log("Personality: %s", personality);
+  
   const responseMaker = (e) => {
     e.preventDefault();
     console.log("On the way");
-    Promise.resolve(axios.post("http://localhost:8080/"+personality, textInput)).then(() => {
+    Promise.resolve(axios.post("http://localhost:8080/"+personality, textInput)).then((res) => {
       console.log("message has been sent")
-      Promise.resolve(axios.get("http://localhost:8080/"+personality)).then((res) => {
-        setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
-      })
+      setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
     }).catch((err) => {
         console.log("failed", err.message);
     });
-    /*
-    Promise.resolve(axios.post("https://npcroom-processing.onrender.com", textInput)).then(() => {
-      console.log("message has been sent")
-      Promise.resolve(axios.get("https://npcroom-processing.onrender.com")).then((res) => {
-        setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
-      })
-      .catch((err) => {
-        console.log("failed", err.message);
-      }); */
   };
 
   return (
     <>
       <BackButton></BackButton>
-      <Typography variant="body1" sx={{ whiteSpace: "pre-line", mt: 2 }}>
-        {response}
-      </Typography>
-      <Box
-        className="textBox"
-        sx={{
-          mt: 2,
-          display: "flex", // Apply a flexbox layout
-          flexDirection: "column", // Stack children vertically
-          alignItems: "center", // Center children horizontally
-        }}
-        component="form"
-        onSubmit={responseMaker}
-      >
-        <TextField
-          fullWidth
-          multiline
-          rows={2}
-          variant="outlined"
-          placeholder="Type your message here"
-          onChange={(e) => setTextInput(e.target.value)}
-          className="chatText"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Button
-                  id="sendButton"
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                >
-                  Send
-                </Button>
-              </InputAdornment>
-            ),
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: '64px' }}>
+        <Box className="chatText" sx={{ display: "flex", flexDirection: "column", 
+          alignItems: "center", border: 2, borderColor: "primary", borderRadius: "8px" }}>
+          <Typography variant="body1" sx={{ whiteSpace: "pre-line", mt: 2 }}>
+            {response}
+          </Typography>
+        </Box>
+        <Box
+          className="textBox"
+          sx={{
+            mt: 2,
+            display: "flex", // Apply a flexbox layout
+            flexDirection: "column", // Stack children vertically
+            alignItems: "center", // Center children horizontally
           }}
-        />
+          component="form"
+          onSubmit={responseMaker}
+        >
+          <TextField
+            fullWidth
+            multiline
+            rows={2}
+            variant="outlined"
+            placeholder="Type your message here"
+            onChange={(e) => setTextInput(e.target.value)}
+            className="chatText"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Button
+                    id="sendButton"
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Send
+                  </Button>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
       </Box>
     </>
   );

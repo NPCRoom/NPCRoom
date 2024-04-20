@@ -2,10 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography, FormControl, InputLabel, NativeSelect } from '@mui/material';
+import "./Personality.css";
 
 const Personality = () => {
     const navigate = useNavigate();
-    const [personality, setPersonality] = useState("");
+    const [personality, setPersonality] = useState("Classic");
     // handle personality choice, pass it as a prop?
     const handlePersonality = (e) => {
         e.preventDefault();
@@ -14,14 +15,14 @@ const Personality = () => {
     }
     return (
         <>
-            <Button variant="contained" onClick={() => navigate("/")}>Go Back</Button>
+            <Button variant="contained" color="secondary" onClick={() => navigate("/")}>Go Back</Button>
             <Box sx={{ 
                 mt: 2,
                 display: 'flex', // Apply a flexbox layout
                 flexDirection: 'column', // Stack children vertically
                 alignItems: 'center', // Center children horizontally
             }}>
-                <Typography>Choose the personality you want to see today!</Typography>
+                <Typography className="personality">Choose the personality you want to see today!</Typography>
                 <FormControl fullWidth>
                     <InputLabel variant="standard" htmlFor="uncontrolled-native">
                         Select
@@ -29,19 +30,16 @@ const Personality = () => {
                     <NativeSelect
                         defaultValue={30}
                         inputProps={{
-                        name: 'age',
-                        id: 'uncontrolled-native',
+                            name: 'age',
+                            id: 'uncontrolled-native',
                         }}
                         onChange={(e) => { setPersonality(e.target.value); }}
                     >
                         <option value="Classic">Classic</option>
-                        <option value="Depressed">Depressed</option>
-                        <option value="Angry">Angry</option>
-                        <option value="Crackhead">Crackhead</option>
                         <option value="Nerd">Nerd</option>
                     </NativeSelect>
                 </FormControl>
-                <Button variant="contained" onClick={handlePersonality}>Enter</Button>
+                <Button variant="contained" color="secondary" onClick={handlePersonality}>Enter</Button>
             </Box>
         </>
     )

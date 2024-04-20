@@ -81,7 +81,7 @@ function Login() {
           margin="normal"
           label="Password"
           variant="filled"
-          type=""
+          type="password"
           //   InputProps={{
           //     endAdornment: (
           //       <InputAdornment position="end">
