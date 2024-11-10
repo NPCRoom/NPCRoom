@@ -3,7 +3,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://npcroom.vercel.app"})
 public class NPCRoomNerdController {
 
     @PostMapping("/Nerd")
@@ -14,10 +14,10 @@ public class NPCRoomNerdController {
         StringBuilder res = new StringBuilder();
 
         if(Statements.checkFilter(msg.toLowerCase())) {
-            res.append("That's a bit inappropriate. Let's talk about something else." + "\n");
+            res.append("That's a bit inappropriate. Let's talk about something else.\n");
         } else {
             if(msg.contains("homework")) {
-                res.append("Ugh, homework sucks. I have too much already" + "\n");
+                res.append("Ugh, homework sucks. I have too much already\n");
             }
             for(String keywords : statements.keySet()) {
                 if (msg.toLowerCase().contains(keywords)) {
@@ -26,7 +26,7 @@ public class NPCRoomNerdController {
             }
 
             if(res.toString().equals("")) {
-                res.append("Erm... You left the text box empty or I cannot read it, maybe try studying next time 🤓" + "\n");
+                res.append("Erm... You left the text box empty or I cannot read it, maybe try studying next time 🤓\n");
             }
         }
 

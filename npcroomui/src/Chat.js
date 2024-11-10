@@ -18,10 +18,10 @@ const Chat = (props) => {
     e.preventDefault();
     console.log("On the way");
     Promise.resolve(axios.post("http://localhost:8080/"+personality, textInput)).then((res) => {
-      console.log("message has been sent")
+      console.log("Message sent successfully");
       setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
     }).catch((err) => {
-        console.log("failed", err.message);
+      console.error(err);
     });
   };
 

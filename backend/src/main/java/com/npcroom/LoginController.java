@@ -22,7 +22,6 @@ public class LoginController {
             String inputUser = login.getUsername();
             String inputPass = login.getPassword();
             MongoDatabase db = client.getDatabase("users");
-            // TODO: finish login authentication
             MongoCollection<Document> coll = db.getCollection("login");
             Document query = coll.find(Filters.and(
                     Filters.eq("username", inputUser),
