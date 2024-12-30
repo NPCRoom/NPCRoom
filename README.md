@@ -1,3 +1,3 @@
 # NPCRoom
 Deployment live at: www.npcroom.vercel.app
-Registration support added, will be deployed later.
+Registration added in Fall 2024 iteration.
