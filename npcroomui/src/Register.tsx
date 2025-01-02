@@ -6,21 +6,23 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import BackButton from "./Components/Logo";
-import "./Login.css";
+import Logo from './Components/Logo';
+import "./Register.css";
 
-function Login() {
+function Register() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   let toggleFail = false;
   
-  const handleLogin = (e) => {
-    e.preventDefault();
-    Promise.resolve(axios.post("http://localhost:8080/login", {
-      username: username,
-      password: password
+  const handleRegister = () => {
+    //e.preventDefault();
+    Promise.resolve(axios.post("http://localhost:8080/register", {
+        email: email,
+        username: username,
+        password: password
     })).then((response) => {
       console.log(response.data);
       if(response.data === "Failure") {
@@ -34,11 +36,19 @@ function Login() {
   }
   return (
     <>
-      <BackButton onClick={() => navigate("/")}></BackButton>
-      <div id="loginBox">
-        <Typography id="loginText">Login</Typography>
+      <Logo />
+      <div id="registerBox">
+        <Typography id="registerText">Register</Typography>
         <TextField
-          className="loginField"
+          className="registerField"
+          required
+          margin="normal"
+          label="Email"
+          variant="filled"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          className="registerField"
           required
           margin="normal"
           label="User Name"
@@ -46,7 +56,7 @@ function Login() {
           onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
-          className="loginField"
+          className="registerField"
           required
           margin="normal"
           label="Password"
@@ -54,23 +64,19 @@ function Login() {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        {<Button id="loginButton"
-        variant="contained"
-        onClick={() => navigate("/register")}>
-            Click to Register
-        </Button>}
+        
         <Button
-          id="loginButton"
+          id="registerButton"
           type="submit"
           variant="contained"
-          onClick={handleLogin}
+          onClick={handleRegister}
         >
-          Login
+          Register
         </Button>
-        {<Typography>Incorrect User or Password</Typography> && toggleFail}
+        {toggleFail && <Typography>Email is already in use</Typography>}
       </div>
     </>
   );
 }
 
-export default Login;
+export default Register;

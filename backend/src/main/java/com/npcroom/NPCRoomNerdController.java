@@ -3,7 +3,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "https://npcroom.vercel.app"})
+@CrossOrigin(origins = {"http://localhost:5173", "https://npcroom.vercel.app"})
 public class NPCRoomNerdController {
 
     @PostMapping("/Nerd")

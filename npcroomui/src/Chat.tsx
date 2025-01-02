@@ -1,20 +1,19 @@
-import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Chat.css";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import BackButton from "./Components/Logo";
+import Logo from "./Components/Logo";
 import InputAdornment from "@mui/material/InputAdornment";
 
-const Chat = (props) => {
+const Chat = () => {
   const navigate = useNavigate();
 
   const [textInput, setTextInput] = useState('');
   const [response, setResponse] = useState('');
   const personality = localStorage.getItem("personality");
   
-  const responseMaker = (e) => {
+  const responseMaker = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("On the way");
     Promise.resolve(axios.post("http://localhost:8080/"+personality, textInput)).then((res) => {
@@ -27,7 +26,7 @@ const Chat = (props) => {
 
   return (
     <>
-      <BackButton></BackButton>
+      <Logo />
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: '64px' }}>
         <Box className="chatText" sx={{ display: "flex", flexDirection: "column", 
           alignItems: "center", border: 2, borderColor: "primary", borderRadius: "8px" }}>

@@ -7,7 +7,7 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins={"https://localhost:5173", "https://npcroom.vercel.app"})
 @RestController
 public class RegistrationController {
     @Value("${spring.data.mongodb.uri}")

@@ -1,11 +1,12 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import Button from "@mui/material/Button";
 import { Box, Typography } from "@mui/material";
-import NPCLogo from "./NPCLogo.png";
 
-const Home = (props) => {
+const npc_wojak = require('./NPC_wojak_meme.png');
+const NPCLogo = require('./NPCLogo.png');
+
+const Home = () => {
   const navigate = useNavigate();
 
   return (
@@ -32,14 +33,7 @@ const Home = (props) => {
 
         <img src={NPCLogo} alt="NPC Logo" className="logoImage"></img>
       </Box>
-
-      {
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/1/1b/NPC_wojak_meme.png"
-          className="welcomeImage"
-          alt="NPC"
-        ></img>
-      }
+      <img src={npc_wojak} className="welcomeImage" alt="NPC"></img>
       <Typography variant="h6" className="welcomeText">
         The NPCRoom is a NPC chatroom that allows users to type in the chat and
         get a pre-populated response from an NPC.
