@@ -5,13 +5,13 @@ import Chat from "./Chat";
 import Login from "./Login";
 import Register from './Register';
 import Personality from "./Personality";
-import './App.css'
-import './Home.css'
-import './Chat.css'
+
+import './App.css';
+import './Home.css';
+import './Chat.css';
 
 const App = () => {
   return (
-
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -6,23 +6,21 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import BackButton from "./Components/Logo";
-import "./Register.css";
+import Logo from './Components/Logo';
+import "./Login.css";
 
-function Register() {
+function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   let toggleFail = false;
   
-  const handleRegister = (e) => {
-    e.preventDefault();
-    Promise.resolve(axios.post("http://localhost:8080/register", {
-        email: email,
-        username: username,
-        password: password
+  const handleLogin = () => {
+    //e.preventDefault();
+    Promise.resolve(axios.post("http://localhost:8080/login", {
+      username: username,
+      password: password
     })).then((response) => {
       console.log(response.data);
       if(response.data === "Failure") {
@@ -36,19 +34,11 @@ function Register() {
   }
   return (
     <>
-      <BackButton onClick={() => navigate("/")}></BackButton>
-      <div id="registerBox">
-        <Typography id="registerText">Register</Typography>
+      <Logo />
+      <div id="loginBox">
+        <Typography id="loginText">Login</Typography>
         <TextField
-          className="registerField"
-          required
-          margin="normal"
-          label="Email"
-          variant="filled"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          className="registerField"
+          className="loginField"
           required
           margin="normal"
           label="User Name"
@@ -56,7 +46,7 @@ function Register() {
           onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
-          className="registerField"
+          className="loginField"
           required
           margin="normal"
           label="Password"
@@ -64,19 +54,23 @@ function Register() {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        
+        {<Button id="loginButton"
+        variant="contained"
+        onClick={() => navigate("/register")}>
+            Click to Register
+        </Button>}
         <Button
-          id="registerButton"
+          id="loginButton"
           type="submit"
           variant="contained"
-          onClick={handleRegister}
+          onClick={handleLogin}
         >
-          Register
+          Login
         </Button>
-        {<Typography>Email is already in use</Typography> && toggleFail}
+        {toggleFail && <Typography>Incorrect User or Password</Typography>}
       </div>
     </>
   );
 }
 
-export default Register;
+export default Login;

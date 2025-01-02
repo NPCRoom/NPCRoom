@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography, FormControl, InputLabel, NativeSelect } from '@mui/material';
@@ -8,8 +7,8 @@ const Personality = () => {
     const navigate = useNavigate();
     const [personality, setPersonality] = useState("Classic");
     // handle personality choice, pass it as a prop?
-    const handlePersonality = (e) => {
-        e.preventDefault();
+    const handlePersonality = () => {
+        //e.preventDefault();
         localStorage.setItem("personality", personality);
         navigate("/chat");
     }

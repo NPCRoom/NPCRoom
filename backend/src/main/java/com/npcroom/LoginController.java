@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins="*")
+@CrossOrigin(origins={"https://localhost:5173", "https://npcroom.vercel.app"})
 @RestController
 @RequestMapping
 public class LoginController {
