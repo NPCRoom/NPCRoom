@@ -38,7 +38,7 @@ const Home = () => {
         The NPCRoom is a NPC chatroom that allows users to type in the chat and
         get a pre-populated response from an NPC.
       </Typography>
-
+      <Typography>Some unneeded text here</Typography>
       <Button
         variant="outlined"
         color="secondary"
